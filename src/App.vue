@@ -1,28 +1,35 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <!-- 声明式导航 -->
+    <TabBar ref="mytabbar" v-show="$store.state.isTabbarShow"></TabBar>
+    <!-- 路由容器 -->
+    <section>
+      <router-view></router-view>
+    </section>
   </div>
 </template>
-
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import Vue from "vue";
+import Vant from "vant";
+import { Dialog } from "vant";
+import "vant/lib/index.css";
+import TabBar from "@/components/TabBar";
+Vue.use(Vant); // vue.components全局注册
+Vue.use(Dialog);
 export default {
-  name: 'App',
   components: {
-    HelloWorld
-  }
-}
+    TabBar,
+  },
+};
 </script>
-
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+<style lang="scss">
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+section {
+  width: 100%;
+  margin-bottom: 40px;
 }
 </style>
