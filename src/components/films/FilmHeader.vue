@@ -1,10 +1,3 @@
-<!--
- * @Author: yangxiaosen
- * @Date: 2023-04-08 23:33:44
- * @LastEditors: Do not edit
- * @LastEditTime: 2023-04-13 23:18:10
- * @FilePath: \text\src\components\films\FilmHeader.vue
--->
 <template lang="">
   <div>
     <ul>

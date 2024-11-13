@@ -1,11 +1,4 @@
 <!-- eslint-disable vue/multi-word-component-names -->
-<!--
- * @Author: yangxiaosen
- * @Date: 2023-04-04 15:53:42
- * @LastEditors: Do not edit
- * @LastEditTime: 2023-04-14 16:11:30
- * @FilePath: \text\src\views\Detail.vue
--->
 <template>
   <div v-if="filmdata" :key="filmdata.filmId">
     <detail-header v-header>{{ filmdata.name }}</detail-header>
@@ -118,69 +111,69 @@
 <script>
 // import axios from 'axios'
 // 引入http模块
-import http from "@/util/http";
-import TabMixin from "@/util/key_tab";
+import http from '@/util/http'
+import TabMixin from '@/util/key_tab'
 // moment 日期转换模块
-import moment from "moment";
-import Vue from "vue";
-import detailHeader from "@/components/detail/DetailHeader";
-import detailSwiper from "@/components/detail/DetailSwiper";
-import detailSwiperItem from "@/components/detail/DetailSwiperItem";
-import { ImagePreview } from "vant";
+import moment from 'moment'
+import Vue from 'vue'
+import detailHeader from '@/components/detail/DetailHeader'
+import detailSwiper from '@/components/detail/DetailSwiper'
+import detailSwiperItem from '@/components/detail/DetailSwiperItem'
+import { ImagePreview } from 'vant'
 
 // 过滤器
-Vue.filter("dateFilter", (data) => {
-  return moment(data * 1000).format("YYYY-MM-DD");
-});
+Vue.filter('dateFilter', (data) => {
+  return moment(data * 1000).format('YYYY-MM-DD')
+})
 // 自定义指令
-Vue.directive("header", {
+Vue.directive('header', {
   // 当被绑定的元素插入到 DOM 中时……
-  inserted(el) {
-    el.style.display = "block";
+  inserted (el) {
+    el.style.display = 'block'
     // console.log(el)
     window.onscroll = () => {
       // console.log('scroll')
       if (document.documentElement.scrollTop >= 50) {
         // console.log("隐藏");
-        el.style.display = "none";
+        el.style.display = 'none'
       } else {
         // console.log('隐藏')
-        el.style.display = "block";
+        el.style.display = 'block'
       }
-    };
+    }
   },
-  unbind() {
-    console.log("scroll销毁");
-    window.onscroll = null;
-  },
-});
+  unbind () {
+    console.log('scroll销毁')
+    window.onscroll = null
+  }
+})
 export default {
   // 混入
   mixins: [TabMixin],
-  data() {
+  data () {
     return {
       activeNames: [],
       filmdata: null,
       isHidden: true,
-      star: false,
-    };
+      star: false
+    }
   },
   components: {
     detailSwiper,
     detailSwiperItem,
-    detailHeader,
+    detailHeader
   },
   methods: {
-    handlepreview(index) {
+    handlepreview (index) {
       ImagePreview({
         images: this.filmdata.photos,
         startPosition: index,
         closeable: true,
-        closeIconPosition: "top-left",
-      });
-    },
+        closeIconPosition: 'top-left'
+      })
+    }
   },
-  created() {
+  created () {
     // console.log('created', this.$route.params.id)
     // axios 利用id发送请求到后端接口，获取详细信息，渲染页面
     // 1.使用http模块中的httpfordetail
@@ -193,35 +186,35 @@ export default {
     http({
       url: `/gateway?filmId=${this.$route.params.id}&k=7128784`,
       headers: {
-        "X-Host": "mall.film-ticket.film.info",
-      },
+        'X-Host': 'mall.film-ticket.film.info'
+      }
     }).then((res) => {
       // console.log(res.data.data.film);
-      this.filmdata = res.data.data.film;
-      console.log(this.filmdata);
+      this.filmdata = res.data.data.film
+      console.log(this.filmdata)
       if (!this.filmdata.isSale) {
         this.$dialog
           .confirm({
-            title: "提示",
-            message: "该影片目前没有排期，到首页看其他电影吧",
+            title: '提示',
+            message: '该影片目前没有排期，到首页看其他电影吧'
           })
           .then(() => {
             // on confirm
-            this.$router.push("/home");
+            this.$router.push('/home')
           })
           .catch(() => {
             // on cancel
-            console.log(2);
-          });
+            console.log(2)
+          })
       }
-    });
+    })
   },
-  mounted() {},
-  deactivated() {
-    console.log("销毁详情列表");
-    this.filmdata = null;
-  },
-};
+  mounted () {},
+  deactivated () {
+    console.log('销毁详情列表')
+    this.filmdata = null
+  }
+}
 </script>
 <style lang="scss" scoped>
 span.van-tag {

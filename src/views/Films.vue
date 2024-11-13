@@ -1,11 +1,4 @@
 <!-- eslint-disable vue/multi-word-component-names -->
-<!--
-* @Author: yangxiaosen
-* @Date: 2023-04-06 15:01:50
-* @LastEditors: Do not edit
-* @LastEditTime: 2023-04-13 18:59:12
-* @FilePath: \text\src\views\Films.vue
--->
 <template>
   <div>
     <!-- 3.使用轮播组件和swiperItem组件 -->
@@ -19,18 +12,18 @@
 </template>
 <script>
 // 1.引入swiper组件
-import filmSwiper from "@/components/films/FilmSwiper";
-import filmHeader from "@/components/films/FilmHeader";
+import filmSwiper from '@/components/films/FilmSwiper'
+import filmHeader from '@/components/films/FilmHeader'
 export default {
   // 2.注册swiper组件
   components: {
     filmSwiper,
-    filmHeader,
+    filmHeader
   },
-  data() {
-    return {};
-  },
-};
+  data () {
+    return {}
+  }
+}
 </script>
 <style lang="scss" scoped>
 .sticky {

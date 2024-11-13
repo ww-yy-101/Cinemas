@@ -9,18 +9,18 @@
   </div>
 </template>
 <script>
-import Vue from "vue";
-import Vant from "vant";
-import { Dialog } from "vant";
-import "vant/lib/index.css";
-import TabBar from "@/components/TabBar";
-Vue.use(Vant); // vue.components全局注册
-Vue.use(Dialog);
+import Vue from 'vue'
+
+import { Dialog } from 'vant'
+import 'vant/lib/index.css'
+import TabBar from '@/components/TabBar'
+
+Vue.use(Dialog)
 export default {
   components: {
-    TabBar,
-  },
-};
+    TabBar
+  }
+}
 </script>
 <style lang="scss">
 html,

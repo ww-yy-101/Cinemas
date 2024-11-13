@@ -1,10 +1,3 @@
-/*
- * @Author: yangxiaosen
- * @Date: 2023-04-06 14:59:03
- * @LastEditors: Do not edit
- * @LastEditTime: 2023-04-14 15:43:56
- * @FilePath: \text\src\store\index.js
- */
 import Vue from 'vue'
 import Vuex from 'vuex'
 import http from '@/util/http'

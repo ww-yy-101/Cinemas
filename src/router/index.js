@@ -1,10 +1,3 @@
-/*
- * @Author: yangxiaosen
- * @Date: 2023-04-03 16:23:07
- * @LastEditors: Do not edit
- * @LastEditTime: 2023-04-13 23:30:32
- * @FilePath: \text\src\router\index.js
- */
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Films from '@/views/Films'

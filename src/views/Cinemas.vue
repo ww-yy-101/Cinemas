@@ -1,11 +1,4 @@
 <!-- eslint-disable vue/multi-word-component-names -->
-<!--
- * @Author: yangxiaosen
- * @Date: 2023-04-06 15:01:50
- * @LastEditors: Do not edit
- * @LastEditTime: 2023-04-14 08:36:17
- * @FilePath: \text\src\views\Cinemas.vue
--->
 <template>
   <div>
     <van-nav-bar title="影院" ref="navbar" @click-left="chosecity" @click-right="serchcinema">

@@ -1,10 +1,3 @@
-<!--
- * @Author: yangxiaosen
- * @Date: 2023-04-06 15:01:50
- * @LastEditors: Do not edit
- * @LastEditTime: 2023-04-10 11:09:34
- * @FilePath: \text\src\components\detail\DetailSwiper.vue
--->
 <template>
     <div class="swiper" :class="name">
         <div class="swiper-wrapper">

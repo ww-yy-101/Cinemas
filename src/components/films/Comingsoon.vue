@@ -46,94 +46,94 @@
 </template>
 <script>
 // import axios from 'axios'
-import vue from "vue";
-import http from "@/util/http";
-import { mapState } from "vuex";
-vue.filter("actorsFilter", (data) => {
+import vue from 'vue'
+import http from '@/util/http'
+import { mapState } from 'vuex'
+vue.filter('actorsFilter', (data) => {
   if (data === undefined) {
-    return "暂无主演";
+    return '暂无主演'
   }
   // console.log(data.map(item => item.name))
-  return data.map((item) => item.name).join("  ");
-});
+  return data.map((item) => item.name).join(' ')
+})
 export default {
-  data() {
+  data () {
     return {
       datalist: [],
       loading: false,
       finished: false,
       refreshing: false,
       pag: 1,
-      total: 0,
-    };
+      total: 0
+    }
   },
   computed: {
-    ...mapState(["cityId"]),
+    ...mapState(['cityId'])
   },
   methods: {
-    jumping(id) {
+    jumping (id) {
       // 编程式导航
       // 1.   location.href = '#/detail'
       //   当前匹配的路由
       //   this.$router.push(`/detail/${id}`)
       // 通过命名路由跳转
       this.$router.push({
-        name: "detail",
+        name: 'detail',
         params: {
-          id,
-        },
-      });
+          id
+        }
+      })
     },
-    onLoad() {
-      console.log("到底了");
+    onLoad () {
+      console.log('到底了')
       // 如果数据总长度的等于记录长度，匹配，禁用懒加载
       if (this.datalist.length === this.total && this.total !== 0) {
-        this.finished = true;
-        return;
+        this.finished = true
+        return
       }
-      this.pag++;
+      this.pag++
       http({
         url: `/gateway?cityId=${this.cityId}&pageNum=${this.pag}&pageSize=10&type=2&k=9084647`,
         headers: {
-          "X-Host": "mall.film-ticket.film.list",
-        },
+          'X-Host': 'mall.film-ticket.film.list'
+        }
       }).then((res) => {
-        console.log(res.data);
-        this.datalist = [...this.datalist, ...res.data.data.films];
-        this.loading = false;
-      });
+        console.log(res.data)
+        this.datalist = [...this.datalist, ...res.data.data.films]
+        this.loading = false
+      })
     },
-    onRefresh() {
+    onRefresh () {
       // 清空列表数据
-      this.finished = false;
+      this.finished = false
       // 重新加载数据
       // 将 loading 设置为 true，表示处于加载状态
-      this.loading = true;
-      this.pag = 0;
-      this.datalist = [];
-      this.onLoad();
-      this.refreshing = false;
-    },
+      this.loading = true
+      this.pag = 0
+      this.datalist = []
+      this.onLoad()
+      this.refreshing = false
+    }
   },
-  mounted() {
+  mounted () {
     // 1.用http封装axios函数式
     // http.httpForList().then(res => {
     //   this.datalist = res.data.data.films
     // })
     // 2.写axios实例后的http使用
-    console.log(this.$store.state.isTabbarShow);
+    console.log(this.$store.state.isTabbarShow)
     http({
       url: `/gateway?cityId=${this.cityId}&pageNum=1&pageSize=10&type=2&k=9084647`,
       headers: {
-        "X-Host": "mall.film-ticket.film.list",
-      },
+        'X-Host': 'mall.film-ticket.film.list'
+      }
     }).then((res) => {
-      console.log(res.data.data.films);
-      this.datalist = res.data.data.films;
-      this.total = res.data.data.total;
-    });
-  },
-};
+      console.log(res.data.data.films)
+      this.datalist = res.data.data.films
+      this.total = res.data.data.total
+    })
+  }
+}
 </script>
 <style lang="scss" scoped>
 .van-list {

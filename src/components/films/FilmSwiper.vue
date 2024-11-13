@@ -1,10 +1,3 @@
-<!--
- * @Author: yangxiaosen
- * @Date: 2023-04-06 15:01:50
- * @LastEditors: Do not edit
- * @LastEditTime: 2023-04-18 17:07:27
- * @FilePath: \text\src\components\films\FilmSwiper.vue
--->
 <template>
   <div class="swiper mySwiper">
     <div class="swiper-wrapper">

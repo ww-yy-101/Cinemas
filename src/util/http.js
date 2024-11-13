@@ -1,11 +1,4 @@
 /* eslint-disable indent */
-/*
- * @Author: yangxiaosen
- * @Date: 2023-04-09 19:30:16
- * @LastEditors: Do not edit
- * @LastEditTime: 2023-04-12 15:37:21
- * @FilePath: \text\src\util\http.js
- */
 import axios from 'axios'
 import { Toast } from 'vant'
 // 2-用axios实例

@@ -1,11 +1,4 @@
 <!-- eslint-disable vue/multi-word-component-names -->
-<!--
- * @Author: yangxiaosen
- * @Date: 2023-04-13 20:41:32
- * @LastEditors: Do not edit
- * @LastEditTime: 2023-04-14 15:35:18
- * @FilePath: \text\src\components\cinemas\Search.vue
--->
 <template lang="">
     <div>
         <form action="/">

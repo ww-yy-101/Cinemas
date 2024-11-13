@@ -1,10 +1,4 @@
 <!-- eslint-disable vue/multi-word-component-names -->
-<!-- * @Author: yangxiaosen
- * @Date: 2023-04-04 15:21:41
- * @LastEditors: Do not edit
- * @LastEditTime: 2023-04-14 15:32:00
- * @FilePath: \text\src\components\films\Nowplaying.vue
--->
 <template>
   <div>
     <van-pull-refresh v-model="refreshing" @refresh="onRefresh">
@@ -49,79 +43,79 @@
 </template>
 <script>
 // import axios from 'axios'
-import vue from "vue";
-import http from "@/util/http";
-import { mapState } from "vuex";
-vue.filter("actorsFilter", (data) => {
+import vue from 'vue'
+import http from '@/util/http'
+import { mapState } from 'vuex'
+vue.filter('actorsFilter', (data) => {
   if (data === undefined) {
-    return "暂无主演";
+    return '暂无主演'
   }
   // console.log(data.map(item => item.name))
-  return data.map((item) => item.name).join("  ");
-});
+  return data.map((item) => item.name).join(' ')
+})
 export default {
-  data() {
+  data () {
     return {
       datalist: [],
       loading: false,
       finished: false,
       refreshing: false,
       pag: 1,
-      total: 0,
-    };
+      total: 0
+    }
   },
   computed: {
-    ...mapState(["cityId"]),
+    ...mapState(['cityId'])
   },
   methods: {
-    jumping(id) {
+    jumping (id) {
       // 编程式导航
       // 1.   location.href = '#/detail'
       //   当前匹配的路由
       //   this.$router.push(`/detail/${id}`)
       // 通过命名路由跳转
       this.$router.push({
-        name: "detail",
+        name: 'detail',
         params: {
-          id,
-        },
-      });
+          id
+        }
+      })
     },
-    onLoad() {
+    onLoad () {
       // console.log('到底了')
       // 如果数据总长度的等于记录长度，匹配，禁用懒加载
       if (this.datalist.length === this.total && this.total !== 0) {
-        this.finished = true;
-        return;
+        this.finished = true
+        return
       }
-      this.pag++;
+      this.pag++
 
       http({
         url: `/gateway?cityId=${this.cityId}&pageNum=${this.pag}&pageSize=10&type=1&k=5545971`,
         headers: {
-          "X-Host": "mall.film-ticket.film.list",
-        },
+          'X-Host': 'mall.film-ticket.film.list'
+        }
       }).then((res) => {
-        console.log(res.data);
-        this.datalist = [...this.datalist, ...res.data.data.films];
+        console.log(res.data)
+        this.datalist = [...this.datalist, ...res.data.data.films]
         // 加载状态结束
-        this.loading = false;
-      });
+        this.loading = false
+      })
     },
-    onRefresh() {
+    onRefresh () {
       // 清空列表数据
-      this.finished = false;
+      this.finished = false
 
       // 重新加载数据
       // 将 loading 设置为 true，表示处于加载状态
-      this.loading = true;
-      this.pag = 0;
-      this.datalist = [];
-      this.onLoad();
-      this.refreshing = false;
-    },
+      this.loading = true
+      this.pag = 0
+      this.datalist = []
+      this.onLoad()
+      this.refreshing = false
+    }
   },
-  mounted() {
+  mounted () {
     // 1.用http封装axios函数式
     // http.httpForList().then(res => {
     //   this.datalist = res.data.data.films
@@ -130,32 +124,32 @@ export default {
     http({
       url: `/gateway?cityId=${this.cityId}&pageNum=1&pageSize=10&type=1&k=5545971`,
       headers: {
-        "X-Host": "mall.film-ticket.film.list",
-      },
+        'X-Host': 'mall.film-ticket.film.list'
+      }
     }).then((res) => {
       // console.log(res.data.data.films)
-      this.datalist = res.data.data.films;
-      this.total = res.data.data.total;
+      this.datalist = res.data.data.films
+      this.total = res.data.data.total
       setTimeout(() => {
         this.$dialog
           .confirm({
-            title: "提示",
-            message: "登陆可体验更多功能",
-            confirmButtonText: "现在就去",
-            cancelButtonText: "等会再去",
+            title: '提示',
+            message: '登陆可体验更多功能',
+            confirmButtonText: '现在就去',
+            cancelButtonText: '等会再去'
           })
           .then(() => {
             // on confirm
-            this.$router.push("/login");
+            this.$router.push('/login')
           })
           .catch(() => {
             // on cancel
-            console.log(2);
-          });
-      }, 1000);
-    });
-  },
-};
+            console.log(2)
+          })
+      }, 1000)
+    })
+  }
+}
 </script>
 <style lang="scss" scoped>
 .van-list {

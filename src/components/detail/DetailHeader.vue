@@ -1,10 +1,3 @@
-<!--
- * @Author: yangxiaosen
- * @Date: 2023-04-10 11:25:03
- * @LastEditors: Do not edit
- * @LastEditTime: 2023-04-10 20:46:04
- * @FilePath: \text\src\components\detail\Detailheader.vue
--->
 <template lang="">
     <div class="header">
         <i class="iconfont icon-back" @click="handleBack"></i>
